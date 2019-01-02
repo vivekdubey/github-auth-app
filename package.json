@@ -1,7 +1,7 @@
 {
-  "name": "my-hello-app",
+  "name": "github-auth-mfa",
   "version": "1.0.0",
-  "description": "my hello app",
+  "description": "Application to use github authentication and register MFA",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
