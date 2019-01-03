@@ -4,7 +4,10 @@
 	<p>Hello, <%= user.username %>.<p>
 		<p>
 		<li>View your <a href="/profile">profile</a></li>
-		<li>Register MFA <a href="/mfa">profile</a></li>
+		<% if(user.mfaRegistered) {%>
+		<li>MFA already registered!</li>
+		<%} else {%>
+		<li>Register MFA <a href="/mfa">Click Here</a></li>
+		<%}%>
 		</p>
-
 <% } %>
