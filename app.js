@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-
+const config = require('./config')();
 // Configure view engine to render EJS templates.
 app.set('views', __dirname + '/public/views');
 app.set('view engine', 'ejs');
@@ -10,7 +10,12 @@ app.use(express.static(__dirname + '/public/static'));
 app.use(require('cookie-parser')());
 app.use(require('body-parser').json());
 app.use(require('body-parser').urlencoded({ extended: true }));
-app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false,cookie: { maxAge: 60000 } }));
+app.use(require('express-session')({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: config.cookieMaxAge }
+}));
 
 require('./lib/passport')(app);
 
@@ -23,5 +28,6 @@ app.use('/mfa',mfaRouter);
 const userRouter = require('./routes/user');
 app.use('/', userRouter);
 
-const port = 3000
+const port = config.port;
+console.log(`port: ${port}`)
 app.listen(port);
